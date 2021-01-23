@@ -1,0 +1,2 @@
+### requirements
+twilio == 6.51.0
