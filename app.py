@@ -15,12 +15,12 @@ def send_text(ev=None):
     time.sleep(5)
 
 def loop():
-	GPIO.add_event_detect(SignalPin, GPIO.RISING, callback=send_text, bouncetime=5000) # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
-	while True:
-		time.sleep(1)   # Don't do anything
+        GPIO.add_event_detect(SignalPin, GPIO.RISING, callback=send_text, bouncetime=5000) # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
+        while True:
+            print('awaiting signal on pin {}'.format(SignalPin))
+            time.sleep(10) # Don't do anything
 
 def destroy():
-	GPIO.output(LedPin, GPIO.HIGH)     # led off
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
