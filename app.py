@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
+import os
 import time
+import json
 from src.notifier import easy_sms
 
 SignalPin = 18
+
+phone_numbers = json.loads(os.environ['DOORBELL_PHONE_NUMBERS'])
+
 
 
 def setup():
@@ -11,7 +16,7 @@ def setup():
 	GPIO.setup(SignalPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)     # set SignalPin to 0V
 
 def send_text(ev=None):
-    easy_sms("Huxley go potty now", ['+13038154080', '+18018147058'])
+    easy_sms("Huxley go potty now", phone_numbers)
 
 def loop():
         GPIO.add_event_detect(SignalPin, GPIO.RISING, callback=send_text, bouncetime=10000) # wait for rising voltage and set bouncetime high to mitigate multiple texts
