@@ -13,7 +13,7 @@ twilio_number = os.environ['TWILIO_FROM_NUMBER']
 client = Client(account_sid, auth_token)
 
 def easy_sms(msg, phone_number):
-    if not isinstance(msg, list):
+    if not isinstance(msg, str):
         msg = str(msg)
     if not isinstance(phone_number, str):
         phone_number = str(phone_number)
